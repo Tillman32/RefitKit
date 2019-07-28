@@ -37,7 +37,7 @@ namespace RefitKit.BattleNet.Tests
         [Fact(DisplayName = "Authorize User")]
         public async Task AuthorizeUser()
         {
-            var redirectUrl = Environment.GetEnvironmentVariable("RfK_AUTH_REDIRECT_URL");
+            var redirectUrl = Environment.GetEnvironmentVariable("RfK_BNET_REDIRECT_URL");
 
             var response = await _bNetApi.AuthorizeUser<HttpResponseMessage>(_clientId, redirectUrl);
 
