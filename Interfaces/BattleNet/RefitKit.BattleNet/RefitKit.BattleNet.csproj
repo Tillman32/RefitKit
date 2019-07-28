@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>1.0.1-alpha</Version>
+    <Copyright />
+    <Authors>Brandon Tillman</Authors>
+    <Company>www.BrandonTillman.com</Company>
+    <Product>RefitKit</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Prebuilt Battle.net API interface for Refit - RefitKit</Description>
+    <PackageProjectUrl>https://github.com/Tillman32/RefitKit</PackageProjectUrl>
+    <IsPackable>true</IsPackable>
+    <RepositoryUrl>https://github.com/Tillman32/RefitKit</RepositoryUrl>
+    <PackageTags>Refit, BattleNet</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Refit" Version="4.7.9" />
+  </ItemGroup>
+
+</Project>
