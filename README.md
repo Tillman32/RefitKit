@@ -1,7 +1,10 @@
 # RefitKit
 A comprehensive collection of Refit interfaces for popular API's.
 
-# License 
+### Build Status
+[![Build status](https://dev.azure.com/tillmandev/RefitKit/_apis/build/status/RefitKit-CI?branchName=master)](https://dev.azure.com/tillmandev/RefitKit/_build/latest?definitionId=5?branchName=master)
+
+### License 
 MIT License
 
 Copyright (c) 2019 RefitKit
