@@ -4,6 +4,9 @@ A comprehensive collection of Refit interfaces for popular API's.
 ### Build Status
 [![Build status](https://dev.azure.com/tillmandev/RefitKit/_apis/build/status/RefitKit-CI?branchName=master)](https://dev.azure.com/tillmandev/RefitKit/_build/latest?definitionId=5?branchName=master)
 
+### Feeds 
+MyGet:  https://www.myget.org/F/refitkit-ci/api/v3/index.json 
+
 ### License 
 MIT License
 
