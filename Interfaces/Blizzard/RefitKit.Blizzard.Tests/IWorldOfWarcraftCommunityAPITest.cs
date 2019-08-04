@@ -68,9 +68,9 @@ namespace RefitKit.Blizzard.Tests
         [Fact(DisplayName = "Realm Status")]
         public async Task GetRealmStatus()
         {
-            var realm = "Illidan";
+            var realms = "Illidan,Stormreaver"; 
 
-            var response = await _wowApi.GetRealmStatus<HttpResponseMessage>(realm);
+            var response = await _wowApi.GetRealmStatus<HttpResponseMessage>(realms);
 
             Assert.Equal("OK", response.StatusCode.ToString());
         }

@@ -1,4 +1,5 @@
 ﻿using Refit;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace RefitKit.Blizzard
@@ -90,13 +91,12 @@ namespace RefitKit.Blizzard
         /// <summary>
         /// 
         /// </summary>
-        /// <typeparam name="TResponse"></typeparam>
-        /// <param name="realm"></param>
-        /// <param name="accessToken"></param>
-        /// <param name="region"></param>
+        /// <typeparam name="TResponse">Response Type.</typeparam>
+        /// <param name="limitRealms">CSV string of realms</param>
+        /// <param name="region">The region of the data to retrieve.</param>
         /// <param name="locale">The locale to reflect in localized data.</param>
         /// <returns></returns>
-        [Get("/wow/realm/status?realm={realm}&region={region}&locale={locale}")]
-        Task<TResponse> GetRealmStatus<TResponse>(string realm, string region = "us", string locale = "en_US");
+        [Get("/wow/realm/status?realms={limitRealms}&region={region}&locale={locale}")]
+        Task<TResponse> GetRealmStatus<TResponse>(string limitRealms = null, string region = "us", string locale = "en_US");
     }
 }
