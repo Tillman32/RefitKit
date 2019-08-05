@@ -31,14 +31,14 @@ namespace RefitKit.BattleNet
 
         /// <summary>
         /// OAuth's authentication flow intended for application servers.
+        /// *A BASIC token header is required to authenticate. Passing one through param is optional.
         /// </summary>
         /// <typeparam name="TResponse">Response Type.</typeparam>
-        /// <param name="authHeaderValue">The Basic Authentication header value. Ex: "Basic <base64EncodedStringValue>"</param>
         /// <param name="scope">A space-delimited, case-sensitive list of scopes that to which to request access.</param>
         /// <returns>TResponse</returns>
         [Post("/oauth/token?grant_type=client_credentials&scope={scope}")]
         [Headers("Authorization: Basic")]
-        Task<TResponse> AuthorizeApplication<TResponse>(string scope = null);
+        Task<TResponse> AuthorizeApplication<TResponse>(string scope = null, [Header("Authorization: Basic")]string basicToken = null);
 
         /// <summary>
         /// Verifies that a given bearer token is valid and retrieves metadata about the token, 
