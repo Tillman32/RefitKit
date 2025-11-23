@@ -65,6 +65,51 @@ var achievement = await wowApi.GetAchievement<AchievementResponse>(2144);
 var realms = await wowApi.GetRealmStatus<RealmStatusResponse>("Illidan,Stormreaver");
 ```
 
+### World of Warcraft Profile API
+
+```csharp
+using Refit;
+using RefitKit.Blizzard;
+
+// Create API client with access token
+var profileApi = RestService.For<IWorldOfWarcraftProfileAPI>(
+    Constants.BlizzardAPIBaseURL,
+    new RefitSettings
+    {
+        AuthorizationHeaderValueGetter = (_, _) => Task.FromResult(accessToken)
+    });
+
+// Get character profile
+var character = await profileApi.GetCharacterProfileSummary<CharacterResponse>("tichondrius", "playername");
+
+// Get character mythic keystone profile
+var mythicProfile = await profileApi.GetCharacterMythicKeystoneProfile<MythicProfileResponse>("tichondrius", "playername");
+```
+
+### World of Warcraft Game Data API
+
+```csharp
+using Refit;
+using RefitKit.Blizzard;
+
+// Create API client with access token
+var gameDataApi = RestService.For<IWorldOfWarcraftGameDataAPI>(
+    Constants.BlizzardAPIBaseURL,
+    new RefitSettings
+    {
+        AuthorizationHeaderValueGetter = (_, _) => Task.FromResult(accessToken)
+    });
+
+// Get current WoW Token price
+var tokenPrice = await gameDataApi.GetWoWTokenIndex<TokenResponse>();
+
+// Get connected realm auctions
+var auctions = await gameDataApi.GetAuctions<AuctionResponse>(3676); // Connected realm ID
+
+// Get mythic keystone leaderboard
+var leaderboard = await gameDataApi.GetMythicKeystoneLeaderboard<LeaderboardResponse>(3676, 200, 641);
+```
+
 ## Documentation
 
 Each package includes detailed documentation and examples:

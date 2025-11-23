@@ -45,7 +45,7 @@ var auctions = await wowApi.GetAuctionData<YourResponseType>("Illidan");
 
 ## API Interfaces
 
-### IWorldOfWarcraftCommunityAPI
+### IWorldOfWarcraftCommunityAPI (Legacy API)
 - Achievements
 - Auction House data
 - Boss information and lists
@@ -53,8 +53,61 @@ var auctions = await wowApi.GetAuctionData<YourResponseType>("Illidan");
 - Character profiles with various fields (achievements, appearance, feed, guild)
 - Realm status
 
-### IWorldOfWarcraftGameDataAPI
-- (Ready for Game Data API endpoint implementations)
+### IWorldOfWarcraftGameDataAPI (Modern Game Data API)
+Complete implementation of the modern World of Warcraft Game Data API with 40+ endpoints:
+
+#### Achievement API
+- Achievement index and individual achievements
+- Achievement categories
+
+#### Auction House API
+- Connected realm auctions
+- Commodity auctions
+
+#### Connected Realm API
+- Connected realm index and details
+
+#### Creature API
+- Creature families, types, and individual creatures
+
+#### Guild Crest API
+- Guild crest media
+
+#### Item API
+- Item classes, individual items, and item media
+
+#### Mount API
+- Mount index and individual mounts
+
+#### Mythic Keystone API
+- Dungeon index and details
+- Period index and details
+- Season index and details
+- Leaderboards by realm and dungeon
+
+#### Pet API
+- Pet index and individual pets
+
+#### Playable Class API
+- Class index, details, and media
+
+#### Playable Race API
+- Race index and details
+
+#### Realm API
+- Realm index and individual realm details
+
+#### Region API
+- Region index and details
+
+#### Spell API
+- Individual spells and spell media
+
+#### Title API
+- Title index and individual titles
+
+#### WoW Token API
+- Current WoW Token price
 
 ## Documentation
 
