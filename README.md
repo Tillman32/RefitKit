@@ -1,11 +1,93 @@
 # RefitKit
-A comprehensive collection of Refit interfaces for popular API's.
 
-### Build Status
-[![Build status](https://dev.azure.com/tillmandev/RefitKit/_apis/build/status/RefitKit-CI?branchName=master)](https://dev.azure.com/tillmandev/RefitKit/_build/latest?definitionId=5?branchName=master)
+A comprehensive collection of [Refit](https://github.com/reactiveui/refit) interfaces for popular gaming APIs. RefitKit provides type-safe, easy-to-use interfaces for Battle.net and Blizzard game APIs, eliminating the need to write boilerplate HTTP client code.
 
-### Feeds 
-MyGet:  https://www.myget.org/F/refitkit-ci/api/v3/index.json 
+## Features
+
+- 🎮 **Battle.net OAuth API** - Complete OAuth 2.0 authentication flow support
+- 🐉 **World of Warcraft APIs** - Community and Game Data API interfaces
+- 🔒 **Type-Safe** - Strongly-typed interfaces using Refit
+- ⚡ **Modern** - Built on .NET 10 with latest dependencies
+- 📦 **Easy to Use** - Just add the package and start making API calls
+
+## Packages
+
+| Package | Version | Description |
+|---------|---------|-------------|
+| [RefitKit.BattleNet](https://www.nuget.org/packages/RefitKit.BattleNet/) | [![NuGet](https://img.shields.io/nuget/v/RefitKit.BattleNet.svg)](https://www.nuget.org/packages/RefitKit.BattleNet/) | Battle.net OAuth API interface |
+| [RefitKit.Blizzard](https://www.nuget.org/packages/RefitKit.Blizzard/) | [![NuGet](https://img.shields.io/nuget/v/RefitKit.Blizzard.svg)](https://www.nuget.org/packages/RefitKit.Blizzard/) | Blizzard Game Data API interfaces |
+
+## Installation
+
+Install via NuGet Package Manager:
+
+```bash
+# Battle.net OAuth API
+dotnet add package RefitKit.BattleNet
+
+# Blizzard Game APIs (World of Warcraft)
+dotnet add package RefitKit.Blizzard
+```
+
+## Quick Start
+
+### Battle.net Authentication
+
+```csharp
+using Refit;
+using RefitKit.BattleNet;
+
+// Create API client
+var api = RestService.For<IBattleNetAPI>(Constants.BNetAPIBaseURL);
+
+// Application authentication (client credentials flow)
+var authResponse = await api.AuthorizeApplication<AuthResponse>();
+```
+
+### World of Warcraft API
+
+```csharp
+using Refit;
+using RefitKit.Blizzard;
+
+// Create API client with access token
+var wowApi = RestService.For<IWorldOfWarcraftCommunityAPI>(
+    Constants.BlizzardAPIBaseURL,
+    new RefitSettings
+    {
+        AuthorizationHeaderValueGetter = () => Task.FromResult(accessToken)
+    });
+
+// Get achievement data
+var achievement = await wowApi.GetAchievement<AchievementResponse>(2144);
+
+// Get realm status
+var realms = await wowApi.GetRealmStatus<RealmStatusResponse>("Illidan,Stormreaver");
+```
+
+## Documentation
+
+Each package includes detailed documentation and examples:
+
+- [RefitKit.BattleNet Documentation](./Interfaces/BattleNet/RefitKit.BattleNet/README.md)
+- [RefitKit.Blizzard Documentation](./Interfaces/Blizzard/RefitKit.Blizzard/README.md)
+
+For more information about the underlying APIs:
+- [Blizzard Developer Portal](https://develop.battle.net/)
+- [Battle.net OAuth Documentation](https://develop.battle.net/documentation/guides/using-oauth)
+- [World of Warcraft API](https://develop.battle.net/documentation/world-of-warcraft)
+
+## Requirements
+
+- .NET 10 or later
+- Valid Battle.net API credentials (client ID and secret)
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## Build Status
+[![Build status](https://dev.azure.com/tillmandev/RefitKit/_apis/build/status/RefitKit-CI?branchName=master)](https://dev.azure.com/tillmandev/RefitKit/_build/latest?definitionId=5?branchName=master) 
 
 ### License 
 MIT License

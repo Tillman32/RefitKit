@@ -11,14 +11,7 @@ namespace RefitKit.Shared
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
                 throw new ArgumentException("Username or Password are empty.");
 
-            try
-            {
-                return Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return Convert.ToBase64String(Encoding.UTF8.GetBytes($"{username}:{password}"));
         }
     }
 }

@@ -26,27 +26,20 @@ namespace RefitKit.BattleNet.Tests
                  Constants.BNetAPIBaseURL,
                  new RefitSettings
                  {
-                     AuthorizationHeaderValueGetter = () => Task.FromResult(authHeaderValue)
+                     AuthorizationHeaderValueGetter = (_, _) => Task.FromResult(authHeaderValue)
                  });
         }
 
         public async Task InitializeAsync()
         {
-            try
-            {
-                var response = await _bNetApi.AuthorizeApplication<HttpResponseMessage>();
+            var response = await _bNetApi.AuthorizeApplication<HttpResponseMessage>();
 
-                if(response.IsSuccessStatusCode)
-                {
-                    var json = await response.Content.ReadAsStringAsync();
-                    JObject resData = JObject.Parse(json);
-
-                    Environment.SetEnvironmentVariable("RfK_TestAccessToken", resData["access_token"].ToString());
-                }
-            }
-            catch (Exception ex)
+            if(response.IsSuccessStatusCode)
             {
-                throw ex;
+                var json = await response.Content.ReadAsStringAsync();
+                JObject resData = JObject.Parse(json);
+
+                Environment.SetEnvironmentVariable("RfK_TestAccessToken", resData["access_token"].ToString());
             }
         }
 

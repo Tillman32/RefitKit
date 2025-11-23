@@ -30,7 +30,7 @@ namespace RefitKit.BattleNet.Tests
                 Constants.BNetAPIBaseURL,
                 new RefitSettings
                 {
-                    AuthorizationHeaderValueGetter = () => Task.FromResult(_authHeaderValue)
+                    AuthorizationHeaderValueGetter = (_, _) => Task.FromResult(_authHeaderValue)
                 });
         }
 

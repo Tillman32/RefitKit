@@ -23,7 +23,7 @@ namespace RefitKit.Blizzard.Tests
                 Constants.BlizzardAPIBaseURL,
                 new RefitSettings
                 {
-                    AuthorizationHeaderValueGetter = () => Task.FromResult(_accessToken)
+                    AuthorizationHeaderValueGetter = (_, _) => Task.FromResult(_accessToken)
                 });
         }
 
