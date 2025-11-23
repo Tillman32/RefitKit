@@ -6,6 +6,7 @@ A comprehensive collection of [Refit](https://github.com/reactiveui/refit) inter
 
 - 🎮 **Battle.net OAuth API** - Complete OAuth 2.0 authentication flow support
 - 🐉 **World of Warcraft APIs** - Community and Game Data API interfaces
+- 🐙 **GitHub REST API** - Comprehensive GitHub API v3 interface
 - 🔒 **Type-Safe** - Strongly-typed interfaces using Refit
 - ⚡ **Modern** - Built on .NET 10 with latest dependencies
 - 📦 **Easy to Use** - Just add the package and start making API calls
@@ -16,6 +17,7 @@ A comprehensive collection of [Refit](https://github.com/reactiveui/refit) inter
 |---------|---------|-------------|
 | [RefitKit.BattleNet](https://www.nuget.org/packages/RefitKit.BattleNet/) | [![NuGet](https://img.shields.io/nuget/v/RefitKit.BattleNet.svg)](https://www.nuget.org/packages/RefitKit.BattleNet/) | Battle.net OAuth API interface |
 | [RefitKit.Blizzard](https://www.nuget.org/packages/RefitKit.Blizzard/) | [![NuGet](https://img.shields.io/nuget/v/RefitKit.Blizzard.svg)](https://www.nuget.org/packages/RefitKit.Blizzard/) | Blizzard Game Data API interfaces |
+| [RefitKit.GitHub](https://www.nuget.org/packages/RefitKit.GitHub/) | [![NuGet](https://img.shields.io/nuget/v/RefitKit.GitHub.svg)](https://www.nuget.org/packages/RefitKit.GitHub/) | GitHub REST API v3 interface |
 
 ## Installation
 
@@ -27,6 +29,9 @@ dotnet add package RefitKit.BattleNet
 
 # Blizzard Game APIs (World of Warcraft)
 dotnet add package RefitKit.Blizzard
+
+# GitHub REST API
+dotnet add package RefitKit.GitHub
 ```
 
 ## Quick Start
@@ -110,17 +115,53 @@ var auctions = await gameDataApi.GetAuctions<AuctionResponse>(3676); // Connecte
 var leaderboard = await gameDataApi.GetMythicKeystoneLeaderboard<LeaderboardResponse>(3676, 200, 641);
 ```
 
+### GitHub API
+
+```csharp
+using Refit;
+using RefitKit.GitHub;
+
+// Create API client (no auth required for public endpoints)
+var gitHubApi = RestService.For<IGitHubAPI>(Constants.GitHubAPIBaseURL);
+
+// Get a repository
+var repo = await gitHubApi.GetRepository<RepositoryResponse>("octocat", "Hello-World");
+
+// Get a user
+var user = await gitHubApi.GetUser<UserResponse>("octocat");
+
+// List issues
+var issues = await gitHubApi.ListIssues<IssueResponse[]>("owner", "repo");
+
+// Search repositories
+var searchResults = await gitHubApi.SearchRepositories<SearchResponse>("language:csharp");
+
+// For authenticated requests, provide a GitHub token
+var authenticatedApi = RestService.For<IGitHubAPI>(
+    Constants.GitHubAPIBaseURL,
+    new RefitSettings
+    {
+        AuthorizationHeaderValueGetter = (_, _) => Task.FromResult(yourGitHubToken)
+    });
+
+// Get the authenticated user
+var me = await authenticatedApi.GetAuthenticatedUser<UserResponse>();
+```
+
 ## Documentation
 
 Each package includes detailed documentation and examples:
 
 - [RefitKit.BattleNet Documentation](./Interfaces/BattleNet/RefitKit.BattleNet/README.md)
 - [RefitKit.Blizzard Documentation](./Interfaces/Blizzard/RefitKit.Blizzard/README.md)
+- [RefitKit.GitHub Documentation](./Interfaces/GitHub/RefitKit.GitHub/README.md)
 
 For more information about the underlying APIs:
 - [Blizzard Developer Portal](https://develop.battle.net/)
 - [Battle.net OAuth Documentation](https://develop.battle.net/documentation/guides/using-oauth)
 - [World of Warcraft API](https://develop.battle.net/documentation/world-of-warcraft)
+- [GitHub REST API Documentation](https://docs.github.com/en/rest)
+- [GitHub Authentication](https://docs.github.com/en/rest/overview/authenticating-to-the-rest-api)
 
 ## Requirements
 
