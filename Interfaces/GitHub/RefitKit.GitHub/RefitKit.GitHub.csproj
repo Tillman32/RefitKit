@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Version>1.0.0</Version>
+    <Copyright />
+    <Authors>Brandon Tillman</Authors>
+    <Company>www.BrandonTillman.com</Company>
+    <Product>RefitKit</Product>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Description>Prebuilt GitHub REST API v3 interface for Refit - RefitKit</Description>
+    <PackageProjectUrl>https://github.com/Tillman32/RefitKit</PackageProjectUrl>
+    <IsPackable>true</IsPackable>
+    <RepositoryUrl>https://github.com/Tillman32/RefitKit</RepositoryUrl>
+    <PackageTags>Refit, GitHub, GitHub API</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Refit" Version="8.0.0" />
+  </ItemGroup>
+
+</Project>
